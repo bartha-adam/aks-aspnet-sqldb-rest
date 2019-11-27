@@ -34,10 +34,16 @@ namespace ClaimsApi.Controllers
 
             if (_context.ClaimItems.Count() == 0)
             {
+                _logger.LogInformation("Creating test claim data");
                 // Create a new ClaimItem if collection is empty,
                 // which means you can't delete all ClaimItems.
                 _context.ClaimItems.Add(createTestClaimData());
                 _context.SaveChanges();
+                _logger.LogInformation("Creating test claim data - Done");
+            }
+            else
+            {
+                _logger.LogInformation("SKIP Creating test claim data");
             }
         }
 

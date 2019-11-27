@@ -1,12 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-namespace ClaimsApi.Models {
-    public class ClaimsContext : DbContext {
-        public ClaimsContext(DbContextOptions<ClaimsContext> options) : base(options) {
+using Microsoft.Extensions.Logging;
 
+namespace ClaimsApi.Models {
+    public sealed class ClaimsContext : DbContext {
+        private readonly ILogger<ClaimsContext> _logger;
+
+        /// <inheritdoc />
+        public ClaimsContext(DbContextOptions<ClaimsContext> options, ILogger<ClaimsContext> logger) : base(options)
+        {
+            _logger = logger;
+            logger.LogInformation($"DB connection string = {Database.GetDbConnection().ConnectionString}");
         }
         public DbSet<ClaimItem> ClaimItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            
             if (modelBuilder == null)
             {
                 throw new System.ArgumentNullException(nameof(modelBuilder));
