@@ -21,7 +21,6 @@ spec:
         app: {{ .Values.app.name }}
         slot: blue
         release: {{ .Release.Name }}
-        timestamp: "{{ .Values.timestamp }}"
     spec:
       containers:
       - name: {{ .Chart.Name }}
