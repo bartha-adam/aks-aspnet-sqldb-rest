@@ -43,7 +43,7 @@ namespace ClaimsApi.Controllers
             }
             else
             {
-                _logger.LogInformation("SKIP Creating test claim data!!");
+                _logger.LogInformation("SKIP Creating test claim data!!!");
             }
         }
 
